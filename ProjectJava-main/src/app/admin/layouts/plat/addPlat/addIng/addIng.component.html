@@ -1,0 +1,51 @@
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+<app-header></app-header>
+
+<!--=============== Add INGR Section ===============-->
+<div class="details">
+  <div class="recentOrders">
+    <div class="cardHeader">
+      <h2>Add les ingredinant</h2>
+      <br>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" enctype="multipart/form-data" class="login__form">
+      <div class="login__content grid">
+
+        <!-- Nom -->
+        <div class="login__box">
+          <input type="text" name="nom" class="login__input" [(ngModel)]="formData.nom" required />
+          <label for="nom" class="login__label">Nom</label>
+        </div>
+
+
+        <!-- new ing -->
+        <div class="list-ing">
+          <div class="ingredients-container">
+            <h3>Current Ingredients</h3>
+            <div id="ingredientList" class="ingredient-list">
+              <div *ngFor="let ingredient of ingredients" class="ingredient-item">
+                {{ ingredient.nomIngredient}}
+                <span class="delete-icon" (click)="deleteIngredient(ingredient.idIngredient)">
+                  <i class="fas fa-trash-alt"></i> <!-- Font Awesome trash icon -->
+                </span>
+              </div>
+              <div *ngIf="ingredients.length === 0" class="no-ingredients">
+                No ingredients added yet
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn">Envoyer</button>
+
+      </div>
+    </form>
+    <button (click)="exite()" class="btn">exite</button>
+
+  </div>
+</div>

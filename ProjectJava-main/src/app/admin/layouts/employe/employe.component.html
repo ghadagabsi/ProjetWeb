@@ -1,0 +1,97 @@
+<body>
+  <!-- =============== Navigation ================ -->
+  <div class="container">
+    <app-header></app-header>
+
+
+      <!-- ========================= Main ==================== -->
+      <div class="main">
+          <div class="topbar">
+              <div class="toggle">
+              </div>
+
+              <div class="search">
+                  <label>
+                      <input type="text" placeholder="Search here">
+                  </label>
+              </div>
+
+              <div class="user">
+                  <img src="assets/imgs/customer01.jpg" alt="">
+              </div>
+          </div>
+
+
+          <!-- ================ Order Details List ================= -->
+          <div class="details">
+              <div class="recentOrders">
+                  <div class="cardHeader">
+                      <h2>Employe</h2>
+                      <a href="/admin/employes/addEmploye" class="btn">+ Ajouter</a>
+                  </div>
+
+                  <table>
+                    <thead>
+                      <tr>
+                        <td>Image</td>
+                        <td>Nom Complet</td>
+                        <td>Email</td>
+                        <td>Rôle</td>
+                        <td>Actions</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let employe of employes">
+                        <td>
+                          <div class="imgBx"><img [src]="employe.image_employe || 'assets/imgs/default.jpg'" alt=""></div>
+                        </td>
+                        <td>{{ employe.nom_complet }}</td>
+                        <td>{{ employe.email }}</td>
+                        <td>{{ employe.role }}</td>
+                        <td>
+                          <div class="action-dropdown">
+                            <button class="action-btn">⋮</button>
+                            <div class="action-menu">
+                              <button *ngIf="employe.statut === 'en_attente'"  class="accepter_btn"  (click)="editEmploye(employe)">Accepter</button>
+                              <button *ngIf="employe.statut === 'en_attente'"  class="delete-btn"  (click)="editEmploye(employe)">refuser</button>
+
+                              <button *ngIf="employe.statut === 'accepte'" (click)="editEmploye(employe)">Modifier</button>
+                              <button *ngIf="employe.statut === 'accepte'"  (click)="deleteEmploye(employe)" class="delete-btn">Supprimer</button>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+
+              <!-- ================= STATUT ================ -->
+              <div class="recentCustomers">
+                <div class="cardHeader">
+                  <h2>Statut</h2>
+                </div>
+
+                <table>
+
+                  <tr>
+                    <td>
+                      <h4 (click)="filterByStatut('ACCEPTE')" [ngClass]="{'active-categorie': activeStatut === 'ACCEPTE'}">Accepté</h4>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h4 (click)="filterByStatut('EN_ATTENTE')" [ngClass]="{'active-categorie': activeStatut === 'EN_ATTENTE'}">En attente</h4>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+  <!-- ====== ionicons ======= -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+

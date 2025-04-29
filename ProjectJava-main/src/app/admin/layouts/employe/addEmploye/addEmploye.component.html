@@ -1,0 +1,101 @@
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+<app-header></app-header>
+
+<!--=============== Add Employe Section ===============-->
+<div class="details">
+  <div class="recentOrders">
+    <div class="cardHeader">
+      <h2>Ajouter un Employé</h2>
+      <br>
+    </div>
+
+    <form
+      (ngSubmit)="onSubmit()"
+      #registerForm="ngForm"
+      enctype="multipart/form-data"
+      class="login__form"
+    >
+      <div class="login__content grid">
+
+        <!-- Nom Complet -->
+        <div class="login__box">
+          <input
+          id="nom_complet"
+          type="text"
+          name="nom_complet"
+          class="login__input"
+          [(ngModel)]="formData.nom_complet"
+          required
+        />
+          <label for="nom_complet" class="login__label">Nom Complet</label>
+        </div>
+
+        <!-- Email -->
+        <div class="login__box">
+          <input
+          id="email"
+          type="email"
+          name="email"
+          class="login__input"
+          [(ngModel)]="formData.email"
+          required
+        />
+          <label for="email" class="login__label">Email</label>
+        </div>
+
+        <!-- Mot de Passe -->
+        <div class="login__box">
+          <input
+          id="mot_de_passe"
+          type="password"
+          name="mot_de_passe"
+          class="login__input"
+          [(ngModel)]="formData.mot_de_passe"
+          required
+        />
+          <label for="mot_de_passe" class="login__label">Mot de Passe</label>
+        </div>
+
+        <!-- Role -->
+        <div class="login__box">
+
+          <select
+            id="role"
+            name="role"
+            class="login__input"
+            [(ngModel)]="formData.role"
+            required
+          >
+            <option value="serveur">Serveur</option>
+            <option value="cuisinier">Cuisinier</option>
+            <option value="chef">Chef</option>
+            <option value="admin">Admin</option>
+          </select>
+          <label for="role" class="login__label">Rôle</label>
+        </div>
+
+
+        <!-- Image Upload -->
+        <div class="upload-container" id="drop-zone">
+          <label for="fileInput" class="upload-label">Image de l'employé</label>
+          <input
+            id="fileInput"
+            type="file"
+            name="image_employe"
+            accept="image/*"
+            (change)="onFileSelected($event)"
+            required
+          />
+          <div class="preview" id="preview">
+            <img *ngIf="imagePreview" [src]="imagePreview" class="image-preview" />
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn">Ajouter</button>
+
+      </div>
+    </form>
+  </div>
+</div>

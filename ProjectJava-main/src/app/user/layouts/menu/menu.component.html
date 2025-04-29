@@ -1,0 +1,50 @@
+<app-headerclient></app-headerclient>
+
+<section class="food_section layout_padding" style="margin-top: 80px;">
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>Notre Menu</h2>
+    </div>
+
+    <!-- Filtres -->
+    <ul class="filters_menu">
+      <li [class.active]="activeFilter === 'TOUT'" (click)="filterItems('TOUT')">Tous 𓌉◯𓇋</li>
+      <li [class.active]="activeFilter === 'FASTFOOD'" (click)="filterItems('FASTFOOD')">Fast Food 🍔</li>
+      <li [class.active]="activeFilter === 'PLATPRINCIPALE'" (click)="filterItems('PLATPRINCIPALE')">Plat Principal 🍽️</li>
+      <li [class.active]="activeFilter === 'SALADE'" (click)="filterItems('SALADE')">Salade 🥗</li>
+      <li [class.active]="activeFilter === 'DESSERT'" (click)="filterItems('DESSERT')">Dessert 🍰</li>
+      <li [class.active]="activeFilter === 'BOISSON'" (click)="filterItems('BOISSON')">Boisson 🥤</li>
+    </ul>
+
+    <!-- Affichage des plats -->
+    <div id="menu">
+      <div class="slide-container">
+        <div class="slide-content" *ngFor="let plat of plats">
+          <div class="card-wrapper">
+            <div class="card">
+              <div class="image-content">
+                <span class="overlay"></span>
+                <div class="card-image" (click)="goToDetails(plat.idPlat)">
+                  <img [src]="plat.image" alt="" class="card-img">
+                </div>
+              </div>
+              <div class="card-content">
+                <h2 class="name">{{ plat.nom }}</h2>
+                <p class="description">{{ plat.description }}</p>
+                <br>
+                <p><span class="primary-text" style="font-weight: bold;color:antiquewhite">{{ plat.prix }} TND</span></p>
+                <div>
+                  <button class="button"><i class="fa-regular fa-eye"></i></button>
+                  <button class="button"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<app-footer></app-footer>

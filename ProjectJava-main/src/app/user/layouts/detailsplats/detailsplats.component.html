@@ -1,0 +1,48 @@
+<app-headerclient></app-headerclient>
+
+<section style=" padding:110px 50px 10px 50px;">
+  <div class="container" *ngIf="plat; else loading">
+
+    <img class="img" [src]="plat.image || '../../../../assets/default.jpg'" [alt]="plat.name" />
+
+    <div class="details">
+      <div class="header">
+        <span class="name">{{ plat.nom }}</span>
+        <span class="favorite">❤</span>
+      </div>
+
+      <div class="origins">
+        <span *ngFor="let ingredient of ingredients">
+          {{ ingredient.nomIngredient }}
+        </span>
+      </div>
+
+
+
+
+
+
+      <div class="price">
+        <span>{{ plat.prix }} TND</span>
+      </div>
+      <div class="cook-time">
+        <span>
+          Temps de cuisson environ <strong>15-20</strong> minutes
+        </span>
+      </div>
+
+      <div class="desc">{{plat.description}}</div>
+      <br>
+      <button>Ajouter au panier</button>
+    </div>
+
+  </div>
+</section>
+
+<ng-template #loading>
+  <div style="text-align: center; padding: 50px;">
+    Chargement du plat...
+  </div>
+</ng-template>
+
+<app-footer></app-footer>
